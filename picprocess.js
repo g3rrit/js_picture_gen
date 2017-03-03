@@ -1,8 +1,8 @@
 let jimp = require("jimp");
 let bar = require("./progressbar/bar");
 
-const ch = 128;
-const hl = 1024;
+let ch = 128;
+let hl = 1024;
 
 let picture = 
 {
@@ -128,7 +128,7 @@ let picture =
             let x = this.data[position].xpos;   //Math.floor(position / (hl/ch));
             let y = this.data[position].ypos;   //position % (hl/ch);
             console.log("finished setting x,y: " + x + " - " + y);
-            this.image.mask(this.picarray[arrnum], x, y);
+            this.image.blit(this.picarray[arrnum], x, y);
             
             console.log("removing chunk from data p: " + position);
             this.data.splice(position, 1);
@@ -159,7 +159,8 @@ let picture =
 });*/
 
 exports.pic = picture;
-
+exports.chunksize = ch;
+exports.picsize = hl;
 
 /*jimp.read("processpictures/" + 3 + ".jpg").then((function(img) 
 {
